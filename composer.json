@@ -1,0 +1,34 @@
+{
+    "name": "darvinstudio/omnipay-sberbank",
+    "description": "Omnipay gateway for Sberbank",
+    "type": "library",
+    "keywords": [
+        "omnipay",
+        "payment",
+        "sberbank",
+    ],
+    "homepage": "https://github.com/darvinstudio/omnipay-sberbank",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "Darvin Studio",
+            "email":    "info@darvin-studio.ru",
+            "homepage": "https://www.darvin-studio.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "league/omnipay": "^3"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Darvin\\Omnipay\\Sberbank\\": "src"
+        }
+    },
+    "autoload-dev": {},
+    "scripts": {},
+    "extra": {},
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
