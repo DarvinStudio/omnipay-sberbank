@@ -10,13 +10,15 @@
 
 namespace Darvin\Omnipay\Sberbank\Message;
 
+use Omnipay\Common\Message\RedirectResponseInterface;
+
 /**
  * Abstract response
  */
 abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getMessage(): ?string
     {
@@ -24,7 +26,7 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getCode(): ?int
     {
@@ -32,10 +34,26 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function isSuccessful(): bool
     {
         return $this->getCode() === 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isRedirect(): bool
+    {
+        return array_key_exists('formUrl', $this->data) && $this instanceof RedirectResponseInterface;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTransactionReference(): ?string
+    {
+        return $this->data['orderId'] ?? null;
     }
 }

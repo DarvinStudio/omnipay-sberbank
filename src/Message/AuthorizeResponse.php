@@ -15,37 +15,13 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 /**
  * Authorize response
  */
-class AuthorizationResponse extends AbstractResponse implements RedirectResponseInterface
+class AuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {
-    /**
-     * @return bool
-     */
-    public function isRedirect(): bool
-    {
-        return array_key_exists('formUrl', $this->data) ? true : false;
-    }
-
     /**
      * @return string|null
      */
     public function getRedirectUrl(): ?string
     {
         return $this->data['formUrl'] ?? null;
-    }
-
-    /**
-     * @return mixed|null
-     */
-    public function getTransactionReference(): ?string
-    {
-        return $this->data['orderId'] ?? null;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSuccessful(): bool
-    {
-        return !array_key_exists('errorCode', $this->data);
     }
 }

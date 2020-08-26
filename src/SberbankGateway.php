@@ -10,9 +10,10 @@
 
 namespace Darvin\Omnipay\Sberbank;
 
-use Darvin\Omnipay\Sberbank\Message\AuthorizationRequest;
+use Darvin\Omnipay\Sberbank\Message\AuthorizeRequest;
 use Darvin\Omnipay\Sberbank\Message\CaptureRequest;
-use Darvin\Omnipay\Sberbank\Message\CompleteAuthorizationRequest;
+use Darvin\Omnipay\Sberbank\Message\CompleteAuthorizeRequest;
+use Darvin\Omnipay\Sberbank\Message\PurchaseRequest;
 use Darvin\Omnipay\Sberbank\Message\RefundRequest;
 use Darvin\Omnipay\Sberbank\Message\VoidRequest;
 use Omnipay\Common\AbstractGateway;
@@ -49,7 +50,7 @@ class SberbankGateway extends AbstractGateway
      */
     public function authorize(array $options = []): RequestInterface
     {
-        return $this->createRequest(AuthorizationRequest::class, $options);
+        return $this->createRequest(AuthorizeRequest::class, $options);
     }
 
     /**
@@ -57,7 +58,7 @@ class SberbankGateway extends AbstractGateway
      */
     public function completeAuthorize(array $options = []): RequestInterface
     {
-        return $this->createRequest(CompleteAuthorizationRequest::class, $options);
+        return $this->createRequest(CompleteAuthorizeRequest::class, $options);
     }
 
     /**
@@ -65,7 +66,7 @@ class SberbankGateway extends AbstractGateway
      */
     public function purchase(array $options = []): RequestInterface
     {
-        return $this->authorize($options);
+        return $this->createRequest(PurchaseRequest::class, $options);
     }
 
     /**

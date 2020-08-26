@@ -13,7 +13,7 @@ namespace Darvin\Omnipay\Sberbank\Message;
 /**
  * Complete authorize response
  */
-class CompleteAuthorizationResponse extends AbstractResponse
+class CompleteAuthorizeResponse extends AbstractResponse
 {
     /**
      * @return mixed|null

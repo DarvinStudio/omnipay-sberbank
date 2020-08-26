@@ -22,7 +22,32 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
-    abstract public function getData(): array;
+    public function getData(): array
+    {
+        $this->validate('orderNumber', 'amount', 'returnUrl');
+
+        return [
+            'orderNumber'        => $this->getParameter('orderNumber'),
+            'amount'             => $this->getAmountInteger(),
+            'currency'           => $this->getCurrencyNumeric(),
+            'returnUrl'          => $this->getReturnUrl(),
+            'failUrl'            => $this->getParameter('failUrl'),
+            'description'        => $this->getDescription(),
+            'language'           => $this->getParameter('language'),
+            'pageView'           => $this->getParameter('pageView'),
+            'clientId'           => $this->getParameter('clientId'),
+            'merchantLogin'      => $this->getParameter('merchantLogin'),
+            'jsonParams'         => $this->getParameter('jsonParams'),
+            'sessionTimeoutSecs' => $this->getParameter('sessionTimeoutSecs'),
+            'expirationDate'     => $this->getParameter('expirationDate'),
+            'bindingId'          => $this->getParameter('bindingId'),
+            'features'           => $this->getParameter('features'),
+            'email'              => $this->getParameter('email'),
+            'phone'              => $this->getParameter('phone'),
+            'taxSystem'          => $this->getParameter('taxSystem'),
+            'orderBundle'        => $this->getParameter('orderBundle'),
+        ];
+    }
 
     /**
      * @param array $data

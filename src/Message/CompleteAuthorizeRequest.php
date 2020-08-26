@@ -15,7 +15,7 @@ use Omnipay\Common\Exception\InvalidRequestException;
 /**
  * Complete authorize request
  */
-class CompleteAuthorizationRequest extends AbstractRequest
+class CompleteAuthorizeRequest extends AbstractRequest
 {
     /**
      * @inheritDoc
@@ -46,6 +46,6 @@ class CompleteAuthorizationRequest extends AbstractRequest
      */
     protected function createResponse(AbstractRequest $request, $content): AbstractResponse
     {
-        return new CompleteAuthorizationResponse($request, $content);
+        return new CompleteAuthorizeResponse($request, $content);
     }
 }
