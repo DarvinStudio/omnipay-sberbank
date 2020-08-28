@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Response;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
 

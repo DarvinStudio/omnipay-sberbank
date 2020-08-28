@@ -8,14 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank;
+namespace Omnipay\Sberbank;
 
-use Darvin\Omnipay\Sberbank\Message\AuthorizeRequest;
-use Darvin\Omnipay\Sberbank\Message\CaptureRequest;
-use Darvin\Omnipay\Sberbank\Message\CompleteAuthorizeRequest;
-use Darvin\Omnipay\Sberbank\Message\PurchaseRequest;
-use Darvin\Omnipay\Sberbank\Message\RefundRequest;
-use Darvin\Omnipay\Sberbank\Message\VoidRequest;
+use Omnipay\Sberbank\Message\Request\AuthorizeRequest;
+use Omnipay\Sberbank\Message\Request\CaptureRequest;
+use Omnipay\Sberbank\Message\Request\CompleteAuthorizeRequest;
+use Omnipay\Sberbank\Message\Request\CompletePurchaseRequest;
+use Omnipay\Sberbank\Message\Request\PurchaseRequest;
+use Omnipay\Sberbank\Message\Request\RefundRequest;
+use Omnipay\Sberbank\Message\Request\VoidRequest;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Exception\BadMethodCallException;
 use Omnipay\Common\Message\RequestInterface;
@@ -74,7 +75,7 @@ class SberbankGateway extends AbstractGateway
      */
     public function completePurchase(array $options = []): RequestInterface
     {
-        return $this->completeAuthorize($options);
+        return $this->createRequest(CompletePurchaseRequest::class, $options);
     }
 
     /**

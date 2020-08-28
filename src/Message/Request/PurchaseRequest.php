@@ -8,32 +8,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Request;
+
+use Omnipay\Sberbank\Message\Response\AbstractResponse;
+use Omnipay\Sberbank\Message\Response\PurchaseResponse;
 
 /**
- * Refund request
+ * Purchase request
  */
-class RefundRequest extends AbstractRequest
+class PurchaseRequest extends AbstractRequest
 {
-    /**
-     * @inheritDoc
-     */
-    public function getData(): array
-    {
-        $this->validate('orderId', 'amount');
-
-        return [
-            'orderId' => $this->getParameter('orderId'),
-            'amount' => $this->getAmountInteger(),
-        ];
-    }
-
     /**
      * @inheritDoc
      */
     protected function getMethod(): string
     {
-        return 'refund.do';
+        return 'register.do';
     }
 
     /**
@@ -41,6 +31,6 @@ class RefundRequest extends AbstractRequest
      */
     protected function createResponse(AbstractRequest $request, $content): AbstractResponse
     {
-        return new CaptureResponse($request, $content);
+        return new PurchaseResponse($request, $content);
     }
 }

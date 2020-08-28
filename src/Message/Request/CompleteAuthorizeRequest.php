@@ -8,26 +8,23 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Request;
+
+use Omnipay\Sberbank\Message\Response\AbstractResponse;
+use Omnipay\Sberbank\Message\Response\CompleteAuthorizeResponse;
 
 /**
- * Authorize request
+ * Complete authorize request
  */
-class AuthorizeRequest extends AbstractRequest
+class CompleteAuthorizeRequest extends AbstractRequest
 {
-    /**
-     * @inheritDoc
-     */
-    protected function getMethod(): string
-    {
-        return 'registerPreAuth.do';
-    }
+    use CompleteRequestTrait;
 
     /**
      * @inheritDoc
      */
     protected function createResponse(AbstractRequest $request, $content): AbstractResponse
     {
-        return new AuthorizeResponse($request, $content);
+        return new CompleteAuthorizeResponse($request, $content);
     }
 }

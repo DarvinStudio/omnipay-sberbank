@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Response;
 
 /**
- * Refund response
+ * Capture response
  */
-class RefundResponse extends AbstractResponse
+class CaptureResponse extends AbstractResponse
 {
 
 }

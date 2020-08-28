@@ -8,7 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Request;
+
+use Omnipay\Sberbank\Message\Response\AbstractResponse;
+use Omnipay\Sberbank\Message\Response\CaptureResponse;
 
 /**
  * Capture request

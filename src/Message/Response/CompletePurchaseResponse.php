@@ -8,12 +8,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Response;
 
 /**
- * Capture response
+ * Complete purchase response
  */
-class CaptureResponse extends AbstractResponse
+class CompletePurchaseResponse extends AbstractResponse
 {
+    use CompleteResponseTrait;
 
+    /**
+     * @inheritDoc
+     */
+    public function isSuccessful(): bool
+    {
+        return 0 === $this->getCode() && 2 === $this->data['orderStatus'];
+    }
 }

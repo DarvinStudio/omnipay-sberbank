@@ -8,20 +8,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
-
-use Omnipay\Common\Message\RedirectResponseInterface;
+namespace Omnipay\Sberbank\Message\Response;
 
 /**
- * Authorize response
+ * Complete authorize response
  */
-class AuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
+class CompleteAuthorizeResponse extends AbstractResponse
 {
+    use CompleteResponseTrait;
+
     /**
-     * @return string|null
+     * @inheritDoc
      */
-    public function getRedirectUrl(): ?string
+    public function isSuccessful(): bool
     {
-        return $this->data['formUrl'] ?? null;
+        return 0 === $this->getCode() && 1 === $this->data['orderStatus'];
     }
 }

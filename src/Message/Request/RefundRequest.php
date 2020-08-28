@@ -8,23 +8,26 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Request;
+
+use Omnipay\Sberbank\Message\Response\AbstractResponse;
+use Omnipay\Sberbank\Message\Response\CaptureResponse;
 
 /**
- * Void request
+ * Refund request
  */
-class VoidRequest extends AbstractRequest
+class RefundRequest extends AbstractRequest
 {
     /**
      * @inheritDoc
      */
     public function getData(): array
     {
-        $this->validate('orderId');
+        $this->validate('orderId', 'amount');
 
         return [
-            'orderId'  => $this->getParameter('orderId'),
-            'language' => $this->getParameter('language'),
+            'orderId' => $this->getParameter('orderId'),
+            'amount' => $this->getAmountInteger(),
         ];
     }
 
@@ -33,7 +36,7 @@ class VoidRequest extends AbstractRequest
      */
     protected function getMethod(): string
     {
-        return 'reverse.do';
+        return 'refund.do';
     }
 
     /**
@@ -41,6 +44,6 @@ class VoidRequest extends AbstractRequest
      */
     protected function createResponse(AbstractRequest $request, $content): AbstractResponse
     {
-        return new VoidResponse($request, $content);
+        return new CaptureResponse($request, $content);
     }
 }

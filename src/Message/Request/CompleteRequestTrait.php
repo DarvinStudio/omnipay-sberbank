@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Request;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
- * Complete authorize request
+ * Complete request trait
  */
-class CompleteAuthorizeRequest extends AbstractRequest
+trait CompleteRequestTrait
 {
     /**
      * @inheritDoc
@@ -39,13 +39,5 @@ class CompleteAuthorizeRequest extends AbstractRequest
     protected function getMethod(): string
     {
         return 'getOrderStatusExtended.do';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function createResponse(AbstractRequest $request, $content): AbstractResponse
-    {
-        return new CompleteAuthorizeResponse($request, $content);
     }
 }

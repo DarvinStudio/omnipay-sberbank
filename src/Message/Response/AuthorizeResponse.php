@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Response;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
- * Purchase response
+ * Authorize response
  */
-class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
+class AuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {
     /**
      * @return string|null

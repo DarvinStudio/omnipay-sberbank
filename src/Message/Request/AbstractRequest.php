@@ -8,8 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Request;
 
+use Omnipay\Sberbank\Message\Response\AbstractResponse;
 use Omnipay\Common\Message\ResponseInterface;
 
 /**
@@ -156,7 +157,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param AbstractRequest $request
      * @param mixed           $content
      *
-     * @return \Darvin\Omnipay\Sberbank\Message\AbstractResponse
+     * @return \Omnipay\Sberbank\Message\Response\AbstractResponse
      */
     abstract protected function createResponse(AbstractRequest $request, $content): AbstractResponse;
 }

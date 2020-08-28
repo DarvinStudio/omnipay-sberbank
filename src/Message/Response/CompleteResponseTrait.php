@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Darvin\Omnipay\Sberbank\Message;
+namespace Omnipay\Sberbank\Message\Response;
 
 /**
- * Complete authorize response
+ * Complete response trait
  */
-class CompleteAuthorizeResponse extends AbstractResponse
+trait CompleteResponseTrait
 {
     /**
      * @return mixed|null
