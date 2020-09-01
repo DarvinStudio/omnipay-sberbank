@@ -34,7 +34,7 @@ trait CompleteResponseTrait
     /**
      * @return int
      */
-    public function getActionCode(): int
+    public function getActionCode(): string
     {
         return $this->data['actionCode'];
     }
@@ -48,17 +48,17 @@ trait CompleteResponseTrait
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getAmount(): int
+    public function getAmount(): string
     {
         return $this->data['amount'];
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getCurrency(): ?int
+    public function getCurrency(): ?string
     {
         return $this->data['currency'] ?? null;
     }

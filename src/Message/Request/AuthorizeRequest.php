@@ -19,6 +19,38 @@ use Omnipay\Sberbank\Message\Response\AuthorizeResponse;
 class AuthorizeRequest extends AbstractRequest
 {
     /**
+     * @return array
+     *
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
+    public function getData(): array
+    {
+        $this->validate('orderNumber', 'amount', 'returnUrl');
+
+        return [
+            'orderNumber'        => $this->getOrderNumber(),
+            'amount'             => $this->getAmountInteger(),
+            'currency'           => $this->getCurrencyNumeric(),
+            'returnUrl'          => $this->getReturnUrl(),
+            'failUrl'            => $this->getFailUrl(),
+            'description'        => $this->getDescription(),
+            'language'           => $this->getLanguage(),
+            'pageView'           => $this->getPageView(),
+            'clientId'           => $this->getClientId(),
+            'merchantLogin'      => $this->getMerchantLogin(),
+            'jsonParams'         => $this->getJsonParams(),
+            'sessionTimeoutSecs' => $this->getSessionTimeoutSecs(),
+            'expirationDate'     => $this->getExpirationDate(),
+            'bindingId'          => $this->getBindingId(),
+            'features'           => $this->getFeatures(),
+            'email'              => $this->getEmail(),
+            'phone'              => $this->getPhone(),
+            'taxSystem'          => $this->getTaxSystem(),
+            'orderBundle'        => $this->getOrderNumber(),
+        ];
+    }
+
+    /**
      * @inheritDoc
      */
     protected function getMethod(): string

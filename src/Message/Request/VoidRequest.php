@@ -26,8 +26,8 @@ class VoidRequest extends AbstractRequest
         $this->validate('orderId');
 
         return [
-            'orderId'  => $this->getParameter('orderId'),
-            'language' => $this->getParameter('language'),
+            'orderId'  => $this->getOrderId(),
+            'language' => $this->getLanguage(),
         ];
     }
 

@@ -10,6 +10,7 @@
 
 namespace Omnipay\Sberbank\Message\Request;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Sberbank\Message\Response\AbstractResponse;
 use Omnipay\Sberbank\Message\Response\CompletePurchaseResponse;
 
@@ -18,7 +19,29 @@ use Omnipay\Sberbank\Message\Response\CompletePurchaseResponse;
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
-    use CompleteRequestTrait;
+    /**
+     * @inheritDoc
+     */
+    public function getData(): array
+    {
+        if ($this->isEmptyParameter('orderId') && $this->isEmptyParameter('orderNumber')) {
+            throw new InvalidRequestException("The orderId or orderNumber must specified");
+        }
+
+        return [
+            'orderId'     => $this->getOrderId(),
+            'orderNumber' => $this->getOrderNumber(),
+            'language'    => $this->getLanguage(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getMethod(): string
+    {
+        return 'getOrderStatusExtended.do';
+    }
 
     /**
      * @inheritDoc

@@ -18,37 +18,27 @@ use Omnipay\Common\Message\ResponseInterface;
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
+    use CommonRequestTrait;
+
     /**
      * @return array
      *
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
-    public function getData(): array
-    {
-        $this->validate('orderNumber', 'amount', 'returnUrl');
+    abstract public function getData(): array;
 
-        return [
-            'orderNumber'        => $this->getParameter('orderNumber'),
-            'amount'             => $this->getAmountInteger(),
-            'currency'           => $this->getCurrencyNumeric(),
-            'returnUrl'          => $this->getReturnUrl(),
-            'failUrl'            => $this->getParameter('failUrl'),
-            'description'        => $this->getDescription(),
-            'language'           => $this->getParameter('language'),
-            'pageView'           => $this->getParameter('pageView'),
-            'clientId'           => $this->getParameter('clientId'),
-            'merchantLogin'      => $this->getParameter('merchantLogin'),
-            'jsonParams'         => $this->getParameter('jsonParams'),
-            'sessionTimeoutSecs' => $this->getParameter('sessionTimeoutSecs'),
-            'expirationDate'     => $this->getParameter('expirationDate'),
-            'bindingId'          => $this->getParameter('bindingId'),
-            'features'           => $this->getParameter('features'),
-            'email'              => $this->getParameter('email'),
-            'phone'              => $this->getParameter('phone'),
-            'taxSystem'          => $this->getParameter('taxSystem'),
-            'orderBundle'        => $this->getParameter('orderBundle'),
-        ];
-    }
+    /**
+     * @return string
+     */
+    abstract protected function getMethod(): string;
+
+    /**
+     * @param AbstractRequest $request
+     * @param mixed           $content
+     *
+     * @return \Omnipay\Sberbank\Message\Response\AbstractResponse
+     */
+    abstract protected function createResponse(AbstractRequest $request, $content): AbstractResponse;
 
     /**
      * @param array $data
@@ -80,20 +70,25 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * @return string
      */
-    abstract protected function getMethod(): string;
-
-    /**
-     * @return string
-     */
     protected function getEndPoint(): string
     {
-        if ($this->isEmptyParameter('endPoint')) {
+        if (!$this->isEmptyParameter('endPoint')) {
             return $this->getParameter('endPoint');
         }
 
         return $this->getTestMode()
             ? 'https://3dsec.sberbank.ru/payment/rest/'
             : 'https://securepayments.sberbank.ru/payment/rest/';
+    }
+
+    /**
+     * @param string|null $endPoint
+     *
+     * @return self
+     */
+    public function setEndPoint(?string $endPoint): self
+    {
+        return $this->setParameter('endPoint', $endPoint);
     }
 
     /**
@@ -152,12 +147,4 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             'password' => $this->getParameter('password'),
         ];
     }
-
-    /**
-     * @param AbstractRequest $request
-     * @param mixed           $content
-     *
-     * @return \Omnipay\Sberbank\Message\Response\AbstractResponse
-     */
-    abstract protected function createResponse(AbstractRequest $request, $content): AbstractResponse;
 }

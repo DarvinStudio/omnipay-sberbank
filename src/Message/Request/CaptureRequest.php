@@ -26,7 +26,7 @@ class CaptureRequest extends AbstractRequest
         $this->validate('orderId', 'amount');
 
         return [
-            'orderId' => $this->getParameter('orderId'),
+            'orderId' => $this->getOrderId(),
             'amount'  => $this->getAmountInteger(),
         ];
     }
