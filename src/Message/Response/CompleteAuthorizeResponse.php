@@ -22,6 +22,6 @@ class CompleteAuthorizeResponse extends AbstractResponse
      */
     public function isSuccessful(): bool
     {
-        return 0 === $this->getCode() && 1 === $this->data['orderStatus'];
+        return '0' === $this->getCode() && 1 === $this->data['orderStatus'];
     }
 }

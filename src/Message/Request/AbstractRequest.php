@@ -51,7 +51,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         $data = array_filter(
             $data,
-            function($key) { return $this->isEmptyParameter($key); },
+            function($key) { return !$this->isEmptyParameter($key); },
             ARRAY_FILTER_USE_KEY
         );
 
@@ -143,8 +143,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $this->validate('userName', 'password');
 
         return [
-            'userName' => $this->getParameter('userName'),
-            'password' => $this->getParameter('password'),
+            'userName' => $this->getUserName(),
+            'password' => $this->getPassword(),
         ];
     }
 }

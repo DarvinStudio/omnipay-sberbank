@@ -60,13 +60,13 @@ trait CommonRequestTrait
     }
 
     /**
-     * @param bool|null $testMode
+     * @param bool|null $value
      *
      * @return self
      */
     public function setTestMode($value): self
     {
-        return $this->setParameter('testMode', (bool) $value);
+        return $this->setParameter('testMode', $value);
     }
 
     /**

@@ -28,9 +28,9 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     /**
      * @inheritDoc
      */
-    public function getCode(): ?string
+    public function getCode(): string
     {
-        return $this->data['errorCode'] ?? null;
+        return $this->data['errorCode'] ?? '0';
     }
 
     /**
@@ -38,7 +38,7 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
      */
     public function isSuccessful(): bool
     {
-        return $this->getCode() === 0;
+        return $this->getCode() === '0';
     }
 
     /**

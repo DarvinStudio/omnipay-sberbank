@@ -40,12 +40,45 @@ class SberbankGateway extends AbstractGateway
     public function getDefaultParameters(): array
     {
         return [
-            'userName' => '',
-            'password' => '',
             'testMode' => false,
         ];
     }
 
+    /**
+     * @return string|null
+     */
+    public function getUserName(): ?string
+    {
+        return $this->getParameter('userName');
+    }
+
+    /**
+     * @param string|null $userName
+     *
+     * @return self
+     */
+    public function setUserName(?string $userName): self
+    {
+        return $this->setParameter('userName', $userName);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPassword(): ?string
+    {
+        return $this->getParameter('password');
+    }
+
+    /**
+     * @param string|null $password
+     *
+     * @return self
+     */
+    public function setPassword(?string $password): self
+    {
+        return $this->setParameter('password', $password);
+    }
     /**
      * @inheritDoc
      */
