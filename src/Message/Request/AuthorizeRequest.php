@@ -46,7 +46,7 @@ class AuthorizeRequest extends AbstractRequest
             'email'              => $this->getEmail(),
             'phone'              => $this->getPhone(),
             'taxSystem'          => $this->getTaxSystem(),
-            'orderBundle'        => $this->getOrderNumber(),
+            'orderBundle'        => $this->getOrderBundle(),
         ];
     }
 
